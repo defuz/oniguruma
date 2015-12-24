@@ -68,3 +68,14 @@ fn test_regex_subcaptures() {
     assert_eq!(caps.len(), 2);
 
 }
+
+#[test]
+fn test_regex_subcapturespos() {
+    let regex = Regex::new("e(l+)").unwrap();
+    let captures = regex.captures("hello").unwrap();
+    let caps = captures.iter_pos().collect::<Vec<_>>();
+    assert_eq!(caps[0], Some((1, 4)));
+    assert_eq!(caps[1], Some((2, 4)));
+    assert_eq!(caps.len(), 2);
+
+}

@@ -169,10 +169,11 @@ impl<'t> Captures<'t> {
     }
 
     pub fn iter(&'t self) -> SubCaptures<'t> {
-        SubCaptures {
-            idx: 0,
-            caps: self
-        }
+        SubCaptures { idx: 0, caps: self }
+    }
+
+    pub fn iter_pos(&'t self) -> SubCapturesPos<'t> {
+        SubCapturesPos { idx: 0, caps: self }
     }
 }
 
@@ -188,6 +189,24 @@ impl<'t> iter::Iterator for SubCaptures<'t> {
         if self.idx < self.caps.len() {
             self.idx += 1;
             Some(self.caps.at(self.idx - 1))
+        } else {
+            None
+        }
+    }
+}
+
+pub struct SubCapturesPos<'t> {
+    idx: usize,
+    caps: &'t Captures<'t>
+}
+
+impl<'t> iter::Iterator for SubCapturesPos<'t> {
+    type Item = Option<(usize, usize)>;
+
+    fn next(&mut self) -> Option<Option<(usize, usize)>> {
+        if self.idx < self.caps.len() {
+            self.idx += 1;
+            Some(self.caps.pos(self.idx - 1))
         } else {
             None
         }

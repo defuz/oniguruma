@@ -286,10 +286,9 @@ impl Regex {
 
     pub fn captures<'t>(&self, text: &'t str) -> Option<Captures<'t>> {
         let mut region = Region::new();
-        match self.search(text, &mut region, OPTION_NONE) {
-            Ok(Some(_)) => Some(Captures { text: text, region: region }),
-            _ => None
-        }
+        self.search(text, &mut region, OPTION_NONE)
+            .unwrap()
+            .map(|_| Captures { text: text, region: region })
     }
 }
 

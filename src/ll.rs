@@ -63,5 +63,4 @@ extern {
     pub fn onig_region_new() -> *const OnigRegion;
     pub fn onig_region_free(region: *const OnigRegion, free_self: libc::c_int);
     pub fn onig_region_clear(region: *const OnigRegion);
-    pub fn onig_region_resize(region: *const OnigRegion, n: libc::c_int) -> libc::c_int;
 }

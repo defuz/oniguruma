@@ -39,18 +39,22 @@ fn test_regex_search() {
 
 #[test]
 fn test_regex_captures() {
-    let regex = Regex::new("e(l+)").unwrap();
+    let regex = Regex::new("e(l+)|(r+)").unwrap();
     let captures = regex.captures("hello").unwrap();
-    assert_eq!(captures.len(), 2);
+    assert_eq!(captures.len(), 3);
     assert_eq!(captures.is_empty(), false);
     let pos1 = captures.pos(0).unwrap();
     let pos2 = captures.pos(1).unwrap();
+    let pos3 = captures.pos(2);
     assert_eq!(pos1, (1, 4));
     assert_eq!(pos2, (2, 4));
+    assert_eq!(pos3, None);
     let str1 = captures.at(0).unwrap();
     let str2 = captures.at(1).unwrap();
+    let str3 = captures.at(2);
     assert_eq!(str1, "ell");
     assert_eq!(str2, "ll");
+    assert_eq!(str3, None);
 
 }
 

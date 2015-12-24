@@ -110,19 +110,18 @@ impl Region {
         }
     }
 
-    pub unsafe fn unchecked_pos(&self, pos: usize) -> (usize, usize) {
-        let beg = (*self.raw).beg.offset(pos as isize);
-        let end = (*self.raw).end.offset(pos as isize);
-        (*beg as usize, *end as usize)
-    }
-
     pub fn pos(&self, pos: usize) -> Option<(usize, usize)> {
         if pos >= self.len() {
             return None
         }
-        Some(unsafe {
-            self.unchecked_pos(pos)
-        })
+        let (beg, end) = unsafe {
+            (*(*self.raw).beg.offset(pos as isize), *(*self.raw).end.offset(pos as isize))
+        };
+        if beg >= 0 {
+            Some((beg as usize, end as usize))
+        } else {
+            None
+        }
     }
 
     pub fn clear(&mut self) {

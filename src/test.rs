@@ -19,7 +19,7 @@ fn test_regex_create() {
 }
 
 #[test]
-#[should_panic(expected = "Oniguruma error: invalid character property name {foo}")]
+#[should_panic(expected = "Error(-223, invalid character property name {foo})")]
 fn test_regex_invalid() {
     Regex::new("\\p{foo}", OPTION_NONE, SYNTAX_RUBY).unwrap();
 }

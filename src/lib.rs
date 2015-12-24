@@ -8,9 +8,11 @@ mod ll;
 #[cfg(test)]
 mod test;
 
+use std::error;
 use std::fmt;
 use std::str;
 use std::ptr::null;
+use std::cell;
 
 pub static SYNTAX_ASIS: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxASIS;
 pub static SYNTAX_POSIX_BASIC: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxPosixBasic;
@@ -47,26 +49,49 @@ bitflags!{
 
 pub struct Error {
     error: libc::c_int,
-    error_info: Option<ll::OnigErrorInfo>
+    description: String,
+}
+
+impl Error {
+    fn new(error: libc::c_int, info: Option<ll::OnigErrorInfo>) -> Error {
+        let mut err_buff = &mut [0 as u8; 90];
+        let len  = unsafe {
+            match info {
+                Some(ref error_info) =>
+                    ll::onig_error_code_to_str(
+                        err_buff.as_mut_ptr(),
+                        error,
+                        error_info as *const ll::OnigErrorInfo
+                    ),
+                None => ll::onig_error_code_to_str(err_buff.as_mut_ptr(), error)
+            }
+        };
+        Error {
+            error: error,
+            description: str::from_utf8(&err_buff[..len as usize]).unwrap().to_owned()
+        }
+    }
 }
 
 impl fmt::Debug for Error {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let mut err_buff = &mut [0 as u8; 1024];
-        let len  = unsafe {
-            match self.error_info {
-                Some(ref error_info) =>
-                    ll::onig_error_code_to_str(
-                        err_buff.as_mut_ptr(),
-                        self.error,
-                        error_info as *const ll::OnigErrorInfo),
-                None =>
-                    ll::onig_error_code_to_str(
-                        err_buff.as_mut_ptr(), self.error)
-            }
-        };
-        let err_str_slice = str::from_utf8(&err_buff[..len as usize]).unwrap();
-        write!(f, "Oniguruma error: {}", err_str_slice)
+        write!(f, "Error({}, {})", self.error, self.description)
+    }
+}
+
+impl fmt::Display for Error {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Oniguruma error: {}", self.description)
+    }
+}
+
+impl error::Error for Error {
+    fn description(&self) -> &str {
+        &self.description
+    }
+
+    fn cause(&self) -> Option<&error::Error> {
+        None
     }
 }
 
@@ -167,7 +192,7 @@ impl Regex {
         if err == 0 {
             Ok(Regex{ raw: reg })
         } else {
-            Err(Error{ error: err, error_info: Some(error) })
+            Err(Error::new(err, Some(error)))
         }
     }
 
@@ -196,7 +221,7 @@ impl Regex {
         } else if r == -1 {
             Ok(None)
         } else {
-            Err(Error { error: r, error_info: None })
+            Err(Error::new(r, None))
         }
     }
 }

@@ -1,13 +1,13 @@
 use libc;
 
 pub type OnigRegex = *const u8;
-pub type OnigSyntaxTypeStruct = libc::c_void;
-pub type OnigEncodingType = libc::c_void;
-pub type OnigOptionTypeBits = libc::c_int;
+pub type OnigSyntax = libc::c_void;
+pub type OnigEncoding = libc::c_void;
+pub type OnigOptions = libc::c_int;
 
 #[repr(C)]
 pub struct OnigErrorInfo {
-    pub enc: *const OnigEncodingType,
+    pub enc: *const OnigEncoding,
     pub par: *const u8,
     pub par_end: *const u8
 }
@@ -23,18 +23,18 @@ pub struct OnigRegion {
 
 #[link(name="onig")]
 extern {
-    pub static OnigSyntaxASIS: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxPosixBasic: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxPosixExtended: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxEmacs: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxGrep: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxGnuRegex: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxJava: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxPerl: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxPerl_NG: OnigSyntaxTypeStruct;
-    pub static OnigSyntaxRuby: OnigSyntaxTypeStruct;
+    pub static OnigSyntaxASIS: OnigSyntax;
+    pub static OnigSyntaxPosixBasic: OnigSyntax;
+    pub static OnigSyntaxPosixExtended: OnigSyntax;
+    pub static OnigSyntaxEmacs: OnigSyntax;
+    pub static OnigSyntaxGrep: OnigSyntax;
+    pub static OnigSyntaxGnuRegex: OnigSyntax;
+    pub static OnigSyntaxJava: OnigSyntax;
+    pub static OnigSyntaxPerl: OnigSyntax;
+    pub static OnigSyntaxPerl_NG: OnigSyntax;
+    pub static OnigSyntaxRuby: OnigSyntax;
 
-    pub static OnigEncodingUTF8: OnigEncodingType;
+    pub static OnigEncodingUTF8: OnigEncoding;
 
     pub fn onig_error_code_to_str(err_buff: *mut u8, err_code: libc::c_int, ...) -> libc::c_int;
 
@@ -42,9 +42,9 @@ extern {
         reg: *mut OnigRegex,
         pattern: *const u8,
         pattern_end: *const u8,
-        option: OnigOptionTypeBits,
-        enc: *const OnigEncodingType,
-        syntax: *const OnigSyntaxTypeStruct,
+        option: OnigOptions,
+        enc: *const OnigEncoding,
+        syntax: *const OnigSyntax,
         err_info: *mut OnigErrorInfo
     ) -> libc::c_int;
 
@@ -55,7 +55,7 @@ extern {
         start: *const u8,
         range: *const u8,
         region: *const OnigRegion,
-        option: OnigOptionTypeBits
+        option: OnigOptions
     ) -> libc::c_int;
 
     pub fn onig_match(
@@ -64,7 +64,7 @@ extern {
         end: *const u8,
         at: *const u8,
         region: *const OnigRegion,
-        option: OnigOptionTypeBits
+        option: OnigOptions
     ) -> libc::c_int;
 
     pub fn onig_free(reg: OnigRegex);

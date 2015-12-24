@@ -29,42 +29,42 @@ mod test;
 use std::{error, fmt, str, ptr, iter};
 
 /// Plain text syntax
-pub static SYNTAX_ASIS: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_ASIS: *const ll::OnigSyntax
     = &ll::OnigSyntaxASIS;
 /// POSIX Basic RE syntax
-pub static SYNTAX_POSIX_BASIC: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_POSIX_BASIC: *const ll::OnigSyntax
     = &ll::OnigSyntaxPosixBasic;
 /// POSIX Extended RE syntax
-pub static SYNTAX_POSIX_EXTENDED: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_POSIX_EXTENDED: *const ll::OnigSyntax
     = &ll::OnigSyntaxPosixExtended;
 /// Emacs syntax
-pub static SYNTAX_EMACS: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_EMACS: *const ll::OnigSyntax
     = &ll::OnigSyntaxEmacs;
 /// Grep syntax
-pub static SYNTAX_GREP: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_GREP: *const ll::OnigSyntax
     = &ll::OnigSyntaxGrep;
 /// GNU regex syntax
-pub static SYNTAX_GNU_REGEX: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_GNU_REGEX: *const ll::OnigSyntax
     = &ll::OnigSyntaxGnuRegex;
 /// Java (Sun java.util.regex) syntax
-pub static SYNTAX_JAVA: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_JAVA: *const ll::OnigSyntax
     = &ll::OnigSyntaxJava;
 /// Perl syntax
-pub static SYNTAX_PERL: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_PERL: *const ll::OnigSyntax
     = &ll::OnigSyntaxPerl;
 /// Perl + named group syntax
-pub static SYNTAX_PERL_NG: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_PERL_NG: *const ll::OnigSyntax
     = &ll::OnigSyntaxPerl_NG;
 /// Ruby (default) syntax
-pub static SYNTAX_RUBY: *const ll::OnigSyntaxTypeStruct
+pub static SYNTAX_RUBY: *const ll::OnigSyntax
     = &ll::OnigSyntaxRuby;
 
-pub static ENCODING_UTF8: *const ll::OnigEncodingType
+pub static ENCODING_UTF8: *const ll::OnigEncoding
     = &ll::OnigEncodingUTF8;
 
 bitflags!{
     /// Regex parsing, compilation and evaluation options.
-    flags Options: ll::OnigOptionTypeBits {
+    flags Options: ll::OnigOptions {
         /// Default options. This is both compile and search time option.
         const OPTION_NONE = 0,
         /// Ambiguity match on. This is compile time option.
@@ -322,24 +322,24 @@ impl Regex {
     /// Once compiled, it can be used repeatedly to search in a string. If an
     /// invalid expression is given, then an error is returned.
     pub fn new(pattern: &str) -> Result<Regex, Error> {
-        Regex::new_with_option_and_syntax(pattern, OPTION_NONE, SYNTAX_RUBY)
+        Regex::new_with_options_and_syntax(pattern, OPTION_NONE, SYNTAX_RUBY)
     }
 
-    pub fn new_with_option(pattern: &str,
-                           option: Options)
+    pub fn new_with_options(pattern: &str,
+                           options: Options)
                            -> Result<Regex, Error> {
-        Regex::new_with_option_and_syntax(pattern, option, SYNTAX_RUBY)
+        Regex::new_with_options_and_syntax(pattern, options, SYNTAX_RUBY)
     }
 
     pub fn new_with_syntax(pattern: &str, syntax:
-                           *const ll::OnigSyntaxTypeStruct)
+                           *const ll::OnigSyntax)
                            -> Result<Regex, Error> {
-        Regex::new_with_option_and_syntax(pattern, OPTION_NONE, syntax)
+        Regex::new_with_options_and_syntax(pattern, OPTION_NONE, syntax)
     }
 
-    pub fn new_with_option_and_syntax(pattern: &str,
-                                      option: Options,
-                                      syntax: *const ll::OnigSyntaxTypeStruct)
+    pub fn new_with_options_and_syntax(pattern: &str,
+                                      options: Options,
+                                      syntax: *const ll::OnigSyntax)
                                       -> Result<Regex, Error> {
 
         // Convert the rust types to those required for the call to
@@ -365,7 +365,7 @@ impl Regex {
                 reg_ptr,
                 start,
                 end,
-                option.bits(),
+                options.bits(),
                 ENCODING_UTF8,
                 syntax,
                 &mut error)
@@ -383,7 +383,7 @@ impl Regex {
     /// Returns match position offset if pattern is found, otherwise return
     /// `None`. You also can use search time options: `OPTION_NOTBOL` and
     /// `OPTION_NOTEOL`.
-    pub fn search_with_region(&self, text: &str, region: &mut Region, option: Options)
+    pub fn search_with_region(&self, text: &str, region: &mut Region, options: Options)
         -> Result<Option<usize>, Error> {
         let text_bytes = text.as_bytes();
         let (start, end) = (
@@ -399,7 +399,7 @@ impl Regex {
                 start,
                 end,
                 region.raw,
-                option.bits()
+                options.bits()
             )
         };
 
@@ -417,7 +417,7 @@ impl Regex {
     /// Returns match length if pattern is found, otherwise return `None`.
     /// You also can use search time options: `OPTION_NOTBOL` and
     /// `OPTION_NOTEOL`.
-    pub fn match_with_region(&self, text: &str, region: &mut Region, option: Options)
+    pub fn match_with_region(&self, text: &str, region: &mut Region, options: Options)
         -> Result<Option<usize>, Error> {
         let text_bytes = text.as_bytes();
         let (start, end) = (
@@ -432,7 +432,7 @@ impl Regex {
                 end,
                 start,
                 region.raw,
-                option.bits()
+                options.bits()
             )
         };
 

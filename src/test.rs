@@ -25,6 +25,15 @@ fn test_regex_invalid() {
 }
 
 #[test]
+fn test_error_code() {
+    match Regex::new("\\p{foo}") {
+        Ok(..) => panic!("should fail"),
+        Err(error) => assert_eq!(error.code(), -223)
+    }
+}
+
+
+#[test]
 fn test_regex_search() {
     let mut region = Region::new();
     let regex = Regex::new("e(l+)").unwrap();

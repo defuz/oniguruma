@@ -124,6 +124,13 @@ impl Error {
     }
 }
 
+impl Error {
+    /// Return Oniguruma engine error code.
+    pub fn code(&self) -> isize {
+        self.error as isize
+    }
+}
+
 impl fmt::Debug for Error {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "Error({}, {})", self.error, self.description)
@@ -258,7 +265,9 @@ impl<'t> Captures<'t> {
 }
 
 /// An iterator over capture groups for a particular match of a regular
-/// expression. `'t` is the lifetime of the matched text.
+/// expression.
+///
+///`'t` is the lifetime of the matched text.
 pub struct SubCaptures<'t> {
     idx: usize,
     caps: &'t Captures<'t>
@@ -278,7 +287,9 @@ impl<'t> iter::Iterator for SubCaptures<'t> {
 }
 
 /// An iterator over capture group positions for a particular match of
-/// a regular expression. Positions are byte indices in terms of the original
+/// a regular expression.
+///
+/// Positions are byte indices in terms of the original
 /// string matched. `'t` is the lifetime of the matched text.
 pub struct SubCapturesPos<'t> {
     idx: usize,
@@ -406,7 +417,7 @@ impl Regex {
     ///
     /// # Panics
     ///
-    /// This method may panic in the case memory overflow during execution or
+    /// This method may panic in the case of memory overflow during execution or
     /// other internal errors of Oniguruma engine.
     pub fn captures<'t>(&self, text: &'t str) -> Option<Captures<'t>> {
         let mut region = Region::new();

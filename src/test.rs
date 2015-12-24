@@ -37,7 +37,6 @@ fn test_regex_search() {
     assert_eq!(pos2, (2, 4));
 }
 
-
 #[test]
 fn test_regex_captures() {
     let regex = Regex::new("e(l+)").unwrap();
@@ -52,5 +51,16 @@ fn test_regex_captures() {
     let str2 = captures.at(1).unwrap();
     assert_eq!(str1, "ell");
     assert_eq!(str2, "ll");
+
+}
+
+#[test]
+fn test_regex_subcaptures() {
+    let regex = Regex::new("e(l+)").unwrap();
+    let captures = regex.captures("hello").unwrap();
+    let caps = captures.iter().collect::<Vec<_>>();
+    assert_eq!(caps[0], Some("ell"));
+    assert_eq!(caps[1], Some("ll"));
+    assert_eq!(caps.len(), 2);
 
 }

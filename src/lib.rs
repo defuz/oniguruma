@@ -8,7 +8,7 @@ mod ll;
 #[cfg(test)]
 mod test;
 
-use std::{error, fmt, str, ptr};
+use std::{error, fmt, str, ptr, iter};
 
 pub static SYNTAX_ASIS: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxASIS;
 pub static SYNTAX_POSIX_BASIC: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxPosixBasic;
@@ -167,6 +167,31 @@ impl<'t> Captures<'t> {
 
     pub fn is_empty(&self) -> bool {
         self.len() == 0
+    }
+
+    pub fn iter(&'t self) -> SubCaptures<'t> {
+        SubCaptures {
+            idx: 0,
+            caps: self
+        }
+    }
+}
+
+pub struct SubCaptures<'t> {
+    idx: usize,
+    caps: &'t Captures<'t>
+}
+
+impl<'t> iter::Iterator for SubCaptures<'t> {
+    type Item = Option<&'t str>;
+
+    fn next(&mut self) -> Option<Option<&'t str>> {
+        if self.idx < self.caps.len() {
+            self.idx += 1;
+            Some(self.caps.at(self.idx - 1))
+        } else {
+            None
+        }
     }
 }
 

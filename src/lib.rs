@@ -8,11 +8,7 @@ mod ll;
 #[cfg(test)]
 mod test;
 
-use std::error;
-use std::fmt;
-use std::str;
-use std::ptr::null;
-use std::cell;
+use std::{error, fmt, str, ptr};
 
 pub static SYNTAX_ASIS: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxASIS;
 pub static SYNTAX_POSIX_BASIC: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxPosixBasic;
@@ -25,7 +21,7 @@ pub static SYNTAX_PERL: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxPerl;
 pub static SYNTAX_PERL_NG: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxPerl_NG;
 pub static SYNTAX_RUBY: *const ll::OnigSyntaxTypeStruct =  &ll::OnigSyntaxRuby;
 
-pub static UTF8: *const ll::OnigEncodingType = &ll::OnigEncodingUTF8;
+pub static ENCODING_UTF8: *const ll::OnigEncodingType = &ll::OnigEncodingUTF8;
 
 bitflags!{
     flags OptionType: ll::OnigOptionTypeBits {
@@ -95,7 +91,6 @@ impl error::Error for Error {
     }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Debug)]
 pub struct Region {
     raw: *const ll::OnigRegion
@@ -115,15 +110,19 @@ impl Region {
         }
     }
 
+    pub unsafe fn unchecked_pos(&self, pos: usize) -> (usize, usize) {
+        let beg = (*self.raw).beg.offset(pos as isize);
+        let end = (*self.raw).end.offset(pos as isize);
+        (*beg as usize, *end as usize)
+    }
+
     pub fn pos(&self, pos: usize) -> Option<(usize, usize)> {
         if pos >= self.len() {
             return None
         }
-        unsafe {
-            let beg = (*self.raw).beg.offset(pos as isize);
-            let end = (*self.raw).end.offset(pos as isize);
-            Some((*beg as usize, *end as usize))
-        }
+        Some(unsafe {
+            self.unchecked_pos(pos)
+        })
     }
 
     pub fn clear(&mut self) {
@@ -147,10 +146,9 @@ impl Drop for Region {
     }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Debug)]
 pub struct Regex {
-    raw: *const ll::OnigRegex
+    raw: ll::OnigRegex
 }
 
 impl Regex {
@@ -167,15 +165,15 @@ impl Regex {
             pattern_bytes.as_ptr(),
             pattern_bytes[pattern_bytes.len()..].as_ptr()
         );
-        let mut reg: *const ll::OnigRegex = null();
-        let reg_ptr = &mut reg as *mut *const ll::OnigRegex;
+        let mut reg: ll::OnigRegex = ptr::null();
+        let reg_ptr = &mut reg as *mut ll::OnigRegex;
 
         // We can use this later to get an error message to pass back
         // if regex creation fails.
         let mut error = ll::OnigErrorInfo {
-            enc: null(),
-            par: null(),
-            par_end: null()
+            enc: ptr::null(),
+            par: ptr::null(),
+            par_end: ptr::null()
         };
 
         let err = unsafe {
@@ -184,7 +182,7 @@ impl Regex {
                 start,
                 end,
                 option.bits(),
-                UTF8,
+                ENCODING_UTF8,
                 syntax,
                 &mut error)
         };

@@ -1,0 +1,11 @@
+[package]
+name = "oniguruma"
+version = "0.1.0"
+authors = ["Ivan Ivaschenko <defuz.net@gmail.com>"]
+keywords = ["oniguruma", "onig", "regex", "regular expression"]
+license = "MIT"
+
+
+[dependencies]
+libc = "*"
+bitflags = "*"

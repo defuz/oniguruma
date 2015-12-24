@@ -2,10 +2,12 @@
 name = "oniguruma"
 version = "0.1.0"
 authors = ["Ivan Ivaschenko <defuz.net@gmail.com>"]
-keywords = ["oniguruma", "onig", "regex", "regular expression"]
+keywords = ["oniguruma", "onig", "regex", "regexp", "regular-expressions"]
+description = "Rust bindings for the Oniguruma regular expressions library."
+documentation = "https://defuz.github.io/oniguruma/oniguruma/"
+repository = "https://github.com/defuz/oniguruma"
 license = "MIT"
 
-
 [dependencies]
-libc = "*"
-bitflags = "*"
+libc = "0.2"
+bitflags = "0.3"

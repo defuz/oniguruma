@@ -1,7 +1,28 @@
 Rust bindings for the [Oniguruma](https://github.com/kkos/oniguruma)
 regular expressions library.
 
-Example of usage:
+#### Links
+
+[Documentation](http://defuz.github.io/oniguruma/oniguruma/)
+
+[Oniguruma Syntax Reference](https://github.com/kkos/oniguruma/blob/master/doc/RE)
+
+#### How to install
+
+In `Cargo.toml`:
+
+```toml
+[dependencies]
+oniguruma = "0.1"
+```
+
+In `src/main.rs`:
+
+```rust
+extern crate oniguruma;
+```
+
+#### Example of usage
 
 ```rust
 use oniguruma::Regex;

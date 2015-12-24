@@ -461,6 +461,7 @@ impl Regex {
     }
 
     /// Returns true if and only if the regex matches the string given.
+    ///
     /// # Panics
     ///
     /// This method may panic in the case of memory overflow during execution or
@@ -471,6 +472,24 @@ impl Regex {
             .unwrap()
             .map(|r| r == text.len())
             .unwrap_or(false)
+    }
+
+    /// Returns the start and end byte range of the leftmost-first match in `text`.
+    /// If no match exists, then `None` is returned.
+    ///
+    /// Note that this should only be used if you want to discover the position of
+    /// the match. Testing the existence of a match is faster if you use is_match.
+    ///
+    /// # Panics
+    ///
+    /// This method may panic in the case of memory overflow during execution or
+    /// other internal errors of Oniguruma engine.
+    pub fn find(&self, text: &str) -> Option<(usize, usize)> {
+        let mut region = Region::new();
+        self.search_with_region(text, &mut region, OPTION_NONE)
+            .unwrap()
+            .map(|_| region.pos(0))
+            .unwrap_or(None)
     }
 }
 

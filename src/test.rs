@@ -109,3 +109,10 @@ fn test_regex_is_match() {
     assert!(!regex.is_match("hello 2.0"));
 }
 
+#[test]
+fn test_regex_find() {
+    let regex = Regex::new("he(l+)o").unwrap();
+    assert_eq!(regex.find("hey, hello!"), Some((5, 10)));
+    assert_eq!(regex.find("hey, honey!"), None);
+}
+

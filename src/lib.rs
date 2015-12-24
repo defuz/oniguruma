@@ -147,12 +147,36 @@ impl Drop for Region {
 }
 
 #[derive(Debug)]
+pub struct Captures<'t> {
+    text: &'t str,
+    region: Region
+}
+
+impl<'t> Captures<'t> {
+    pub fn pos(&self, pos: usize) -> Option<(usize, usize)> {
+        self.region.pos(pos)
+    }
+
+    pub fn at(&self, pos: usize) -> Option<&'t str> {
+        self.pos(pos).map(|(beg, end)| &self.text[beg..end])
+    }
+
+    pub fn len(&self) -> usize {
+        self.region.len()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+}
+
+#[derive(Debug)]
 pub struct Regex {
     raw: ll::OnigRegex
 }
 
 impl Regex {
-    pub fn new(
+    pub fn new_with_option_and_syntax(
         pattern: &str,
         option: OptionType,
         syntax: *const ll::OnigSyntaxTypeStruct
@@ -194,6 +218,19 @@ impl Regex {
         }
     }
 
+    pub fn new_with_option(pattern: &str, option: OptionType) -> Result<Regex, Error> {
+        Regex::new_with_option_and_syntax(pattern, option, SYNTAX_RUBY)
+    }
+
+    pub fn new_with_syntax(pattern: &str, syntax: *const ll::OnigSyntaxTypeStruct)
+        -> Result<Regex, Error> {
+        Regex::new_with_option_and_syntax(pattern, OPTION_NONE, syntax)
+    }
+
+    pub fn new(pattern: &str) -> Result<Regex, Error> {
+        Regex::new_with_option_and_syntax(pattern, OPTION_NONE, SYNTAX_RUBY)
+    }
+
     pub fn search(&self, text: &str, region: &mut Region, option: OptionType)
         -> Result<Option<usize>, Error> {
         let text_bytes = text.as_bytes();
@@ -220,6 +257,14 @@ impl Regex {
             Ok(None)
         } else {
             Err(Error::new(r, None))
+        }
+    }
+
+    pub fn captures<'t>(&self, text: &'t str) -> Option<Captures<'t>> {
+        let mut region = Region::new();
+        match self.search(text, &mut region, OPTION_NONE) {
+            Ok(Some(_)) => Some(Captures { text: text, region: region }),
+            _ => None
         }
     }
 }

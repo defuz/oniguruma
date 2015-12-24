@@ -58,6 +58,15 @@ extern {
         option: OnigOptionTypeBits
     ) -> libc::c_int;
 
+    pub fn onig_match(
+        reg: OnigRegex,
+        str: *const u8,
+        end: *const u8,
+        at: *const u8,
+        region: *const OnigRegion,
+        option: OnigOptionTypeBits
+    ) -> libc::c_int;
+
     pub fn onig_free(reg: OnigRegex);
 
     pub fn onig_region_new() -> *const OnigRegion;

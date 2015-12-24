@@ -34,15 +34,28 @@ fn test_error_code() {
 
 
 #[test]
-fn test_regex_search() {
+fn test_regex_search_with_region() {
     let mut region = Region::new();
     let regex = Regex::new("e(l+)").unwrap();
-    let r = regex.search("hello", &mut region, OPTION_NONE).unwrap();
+    let r = regex.search_with_region("hello", &mut region, OPTION_NONE).unwrap();
     assert_eq!(r, Some(1));
     assert_eq!(region.len(), 2);
     let pos1 = region.pos(0).unwrap();
     let pos2 = region.pos(1).unwrap();
     assert_eq!(pos1, (1, 4));
+    assert_eq!(pos2, (2, 4));
+}
+
+#[test]
+fn test_regex_match_with_region() {
+    let mut region = Region::new();
+    let regex = Regex::new("he(l+)").unwrap();
+    let r = regex.match_with_region("hello", &mut region, OPTION_NONE).unwrap();
+    assert_eq!(r, Some(4));
+    assert_eq!(region.len(), 2);
+    let pos1 = region.pos(0).unwrap();
+    let pos2 = region.pos(1).unwrap();
+    assert_eq!(pos1, (0, 4));
     assert_eq!(pos2, (2, 4));
 }
 
@@ -88,3 +101,11 @@ fn test_regex_subcapturespos() {
     assert_eq!(caps.len(), 2);
 
 }
+
+#[test]
+fn test_regex_is_match() {
+    let regex = Regex::new("he(l+)o").unwrap();
+    assert!(regex.is_match("hello"));
+    assert!(!regex.is_match("hello 2.0"));
+}
+

@@ -380,9 +380,10 @@ impl Regex {
 
     /// Search pattern in string and store search result into region object.
     ///
-    /// You also can use search time options: `OPTION_NOTBOL` and
+    /// Returns match position offset if pattern is found, otherwise return
+    /// `None`. You also can use search time options: `OPTION_NOTBOL` and
     /// `OPTION_NOTEOL`.
-    pub fn search(&self, text: &str, region: &mut Region, option: Options)
+    pub fn search_with_region(&self, text: &str, region: &mut Region, option: Options)
         -> Result<Option<usize>, Error> {
         let text_bytes = text.as_bytes();
         let (start, end) = (
@@ -411,6 +412,39 @@ impl Regex {
         }
     }
 
+    /// Match string and store search result into region object.
+    ///
+    /// Returns match length if pattern is found, otherwise return `None`.
+    /// You also can use search time options: `OPTION_NOTBOL` and
+    /// `OPTION_NOTEOL`.
+    pub fn match_with_region(&self, text: &str, region: &mut Region, option: Options)
+        -> Result<Option<usize>, Error> {
+        let text_bytes = text.as_bytes();
+        let (start, end) = (
+            text_bytes.as_ptr(),
+            text_bytes[text_bytes.len()..].as_ptr()
+        );
+
+        let r = unsafe {
+            ll::onig_match(
+                self.raw,
+                start,
+                end,
+                start,
+                region.raw,
+                option.bits()
+            )
+        };
+
+        if r >= 0 {
+            Ok(Some(r as usize))
+        } else if r == -1 {
+            Ok(None)
+        } else {
+            Err(Error::new(r, None))
+        }
+    }
+
     /// Returns the capture groups corresponding to the leftmost-first match
     /// in text. Capture group `0` always corresponds to the entire match.
     /// If no match is found, then `None` is returned.
@@ -421,9 +455,22 @@ impl Regex {
     /// other internal errors of Oniguruma engine.
     pub fn captures<'t>(&self, text: &'t str) -> Option<Captures<'t>> {
         let mut region = Region::new();
-        self.search(text, &mut region, OPTION_NONE)
+        self.search_with_region(text, &mut region, OPTION_NONE)
             .unwrap()
             .map(|_| Captures { text: text, region: region })
+    }
+
+    /// Returns true if and only if the regex matches the string given.
+    /// # Panics
+    ///
+    /// This method may panic in the case of memory overflow during execution or
+    /// other internal errors of Oniguruma engine.
+    pub fn is_match(&self, text: &str) -> bool {
+        let mut region = Region::new();
+        self.match_with_region(text, &mut region, OPTION_NONE)
+            .unwrap()
+            .map(|r| r == text.len())
+            .unwrap_or(false)
     }
 }
 

@@ -383,8 +383,11 @@ impl Regex {
     /// Returns match position offset if pattern is found, otherwise return
     /// `None`. You also can use search time options: `OPTION_NOTBOL` and
     /// `OPTION_NOTEOL`.
-    pub fn search_with_region(&self, text: &str, region: &mut Region, options: Options)
-        -> Result<Option<usize>, Error> {
+    pub fn search_with_region(&self,
+                              text: &str,
+                              region: &mut Region,
+                              options: Options)
+                              -> Result<Option<usize>, Error> {
         let text_bytes = text.as_bytes();
         let (start, end) = (
             text_bytes.as_ptr(),
@@ -417,8 +420,11 @@ impl Regex {
     /// Returns match length if pattern is found, otherwise return `None`.
     /// You also can use search time options: `OPTION_NOTBOL` and
     /// `OPTION_NOTEOL`.
-    pub fn match_with_region(&self, text: &str, region: &mut Region, options: Options)
-        -> Result<Option<usize>, Error> {
+    pub fn match_with_region(&self,
+                             text: &str,
+                             region: &mut Region,
+                             options: Options)
+                             -> Result<Option<usize>, Error> {
         let text_bytes = text.as_bytes();
         let (start, end) = (
             text_bytes.as_ptr(),
@@ -474,11 +480,12 @@ impl Regex {
             .unwrap_or(false)
     }
 
-    /// Returns the start and end byte range of the leftmost-first match in `text`.
-    /// If no match exists, then `None` is returned.
+    /// Returns the start and end byte range of the leftmost-first match in
+    /// `text`. If no match exists, then `None` is returned.
     ///
-    /// Note that this should only be used if you want to discover the position of
-    /// the match. Testing the existence of a match is faster if you use is_match.
+    /// Note that this should only be used if you want to discover the position
+    /// of the match. Testing the existence of a match is faster if you use
+    /// `is_match`.
     ///
     /// # Panics
     ///

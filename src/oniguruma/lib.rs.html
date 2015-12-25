@@ -466,6 +466,90 @@
 <span id="423">423</span>
 <span id="424">424</span>
 <span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Rust bindings for the [Oniguruma](https://github.com/kkos/oniguruma)</span>
 <span class='doccomment'>//! regular expressions library.</span>
@@ -498,42 +582,42 @@
 <span class='kw'>use</span> <span class='ident'>std</span>::{<span class='ident'>error</span>, <span class='ident'>fmt</span>, <span class='ident'>str</span>, <span class='ident'>ptr</span>, <span class='ident'>iter</span>};
 
 <span class='doccomment'>/// Plain text syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_ASIS</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_ASIS</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxASIS</span>;
 <span class='doccomment'>/// POSIX Basic RE syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_POSIX_BASIC</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_POSIX_BASIC</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxPosixBasic</span>;
 <span class='doccomment'>/// POSIX Extended RE syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_POSIX_EXTENDED</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_POSIX_EXTENDED</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxPosixExtended</span>;
 <span class='doccomment'>/// Emacs syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_EMACS</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_EMACS</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxEmacs</span>;
 <span class='doccomment'>/// Grep syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_GREP</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_GREP</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxGrep</span>;
 <span class='doccomment'>/// GNU regex syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_GNU_REGEX</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_GNU_REGEX</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxGnuRegex</span>;
 <span class='doccomment'>/// Java (Sun java.util.regex) syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_JAVA</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_JAVA</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxJava</span>;
 <span class='doccomment'>/// Perl syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_PERL</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_PERL</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxPerl</span>;
 <span class='doccomment'>/// Perl + named group syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_PERL_NG</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_PERL_NG</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxPerl_NG</span>;
 <span class='doccomment'>/// Ruby (default) syntax</span>
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_RUBY</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>SYNTAX_RUBY</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigSyntaxRuby</span>;
 
-<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>ENCODING_UTF8</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigEncodingType</span>
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>ENCODING_UTF8</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigEncoding</span>
     <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>ll</span>::<span class='ident'>OnigEncodingUTF8</span>;
 
 <span class='macro'>bitflags</span><span class='macro'>!</span>{
     <span class='doccomment'>/// Regex parsing, compilation and evaluation options.</span>
-    <span class='ident'>flags</span> <span class='ident'>Options</span>: <span class='ident'>ll</span>::<span class='ident'>OnigOptionTypeBits</span> {
+    <span class='ident'>flags</span> <span class='ident'>Options</span>: <span class='ident'>ll</span>::<span class='ident'>OnigOptions</span> {
         <span class='doccomment'>/// Default options. This is both compile and search time option.</span>
         <span class='kw'>const</span> <span class='ident'>OPTION_NONE</span> <span class='op'>=</span> <span class='number'>0</span>,
         <span class='doccomment'>/// Ambiguity match on. This is compile time option.</span>
@@ -590,6 +674,13 @@
         };
         <span class='kw'>let</span> <span class='ident'>description</span> <span class='op'>=</span> <span class='ident'>str</span>::<span class='ident'>from_utf8</span>(<span class='kw-2'>&amp;</span><span class='ident'>err_buff</span>[..<span class='ident'>len</span> <span class='kw'>as</span> <span class='ident'>usize</span>]).<span class='ident'>unwrap</span>();
         <span class='ident'>Error</span> { <span class='ident'>error</span>: <span class='ident'>error</span>, <span class='ident'>description</span>: <span class='ident'>description</span>.<span class='ident'>to_owned</span>() }
+    }
+}
+
+<span class='kw'>impl</span> <span class='ident'>Error</span> {
+    <span class='doccomment'>/// Return Oniguruma engine error code.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>code</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>isize</span> {
+        <span class='self'>self</span>.<span class='ident'>error</span> <span class='kw'>as</span> <span class='ident'>isize</span>
     }
 }
 
@@ -727,7 +818,9 @@
 }
 
 <span class='doccomment'>/// An iterator over capture groups for a particular match of a regular</span>
-<span class='doccomment'>/// expression. `&#39;t` is the lifetime of the matched text.</span>
+<span class='doccomment'>/// expression.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///`&#39;t` is the lifetime of the matched text.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>SubCaptures</span><span class='op'>&lt;</span><span class='lifetime'>&#39;t</span><span class='op'>&gt;</span> {
     <span class='ident'>idx</span>: <span class='ident'>usize</span>,
     <span class='ident'>caps</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;t</span> <span class='ident'>Captures</span><span class='op'>&lt;</span><span class='lifetime'>&#39;t</span><span class='op'>&gt;</span>
@@ -747,7 +840,9 @@
 }
 
 <span class='doccomment'>/// An iterator over capture group positions for a particular match of</span>
-<span class='doccomment'>/// a regular expression. Positions are byte indices in terms of the original</span>
+<span class='doccomment'>/// a regular expression.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// Positions are byte indices in terms of the original</span>
 <span class='doccomment'>/// string matched. `&#39;t` is the lifetime of the matched text.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>SubCapturesPos</span><span class='op'>&lt;</span><span class='lifetime'>&#39;t</span><span class='op'>&gt;</span> {
     <span class='ident'>idx</span>: <span class='ident'>usize</span>,
@@ -780,24 +875,24 @@
     <span class='doccomment'>/// Once compiled, it can be used repeatedly to search in a string. If an</span>
     <span class='doccomment'>/// invalid expression is given, then an error is returned.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>pattern</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Regex</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='ident'>Regex</span>::<span class='ident'>new_with_option_and_syntax</span>(<span class='ident'>pattern</span>, <span class='ident'>OPTION_NONE</span>, <span class='ident'>SYNTAX_RUBY</span>)
+        <span class='ident'>Regex</span>::<span class='ident'>new_with_options_and_syntax</span>(<span class='ident'>pattern</span>, <span class='ident'>OPTION_NONE</span>, <span class='ident'>SYNTAX_RUBY</span>)
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_with_option</span>(<span class='ident'>pattern</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
-                           <span class='ident'>option</span>: <span class='ident'>Options</span>)
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_with_options</span>(<span class='ident'>pattern</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
+                           <span class='ident'>options</span>: <span class='ident'>Options</span>)
                            <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Regex</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='ident'>Regex</span>::<span class='ident'>new_with_option_and_syntax</span>(<span class='ident'>pattern</span>, <span class='ident'>option</span>, <span class='ident'>SYNTAX_RUBY</span>)
+        <span class='ident'>Regex</span>::<span class='ident'>new_with_options_and_syntax</span>(<span class='ident'>pattern</span>, <span class='ident'>options</span>, <span class='ident'>SYNTAX_RUBY</span>)
     }
 
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_with_syntax</span>(<span class='ident'>pattern</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>syntax</span>:
-                           <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>)
+                           <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>)
                            <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Regex</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='ident'>Regex</span>::<span class='ident'>new_with_option_and_syntax</span>(<span class='ident'>pattern</span>, <span class='ident'>OPTION_NONE</span>, <span class='ident'>syntax</span>)
+        <span class='ident'>Regex</span>::<span class='ident'>new_with_options_and_syntax</span>(<span class='ident'>pattern</span>, <span class='ident'>OPTION_NONE</span>, <span class='ident'>syntax</span>)
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_with_option_and_syntax</span>(<span class='ident'>pattern</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
-                                      <span class='ident'>option</span>: <span class='ident'>Options</span>,
-                                      <span class='ident'>syntax</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntaxTypeStruct</span>)
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_with_options_and_syntax</span>(<span class='ident'>pattern</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
+                                      <span class='ident'>options</span>: <span class='ident'>Options</span>,
+                                      <span class='ident'>syntax</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>ll</span>::<span class='ident'>OnigSyntax</span>)
                                       <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Regex</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
 
         <span class='comment'>// Convert the rust types to those required for the call to</span>
@@ -823,7 +918,7 @@
                 <span class='ident'>reg_ptr</span>,
                 <span class='ident'>start</span>,
                 <span class='ident'>end</span>,
-                <span class='ident'>option</span>.<span class='ident'>bits</span>(),
+                <span class='ident'>options</span>.<span class='ident'>bits</span>(),
                 <span class='ident'>ENCODING_UTF8</span>,
                 <span class='ident'>syntax</span>,
                 <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>error</span>)
@@ -838,10 +933,14 @@
 
     <span class='doccomment'>/// Search pattern in string and store search result into region object.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// You also can use search time options: `OPTION_NOTBOL` and</span>
+    <span class='doccomment'>/// Returns match position offset if pattern is found, otherwise return</span>
+    <span class='doccomment'>/// `None`. You also can use search time options: `OPTION_NOTBOL` and</span>
     <span class='doccomment'>/// `OPTION_NOTEOL`.</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>search</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>text</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>region</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Region</span>, <span class='ident'>option</span>: <span class='ident'>Options</span>)
-        <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>search_with_region</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>,
+                              <span class='ident'>text</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
+                              <span class='ident'>region</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Region</span>,
+                              <span class='ident'>options</span>: <span class='ident'>Options</span>)
+                              <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
         <span class='kw'>let</span> <span class='ident'>text_bytes</span> <span class='op'>=</span> <span class='ident'>text</span>.<span class='ident'>as_bytes</span>();
         <span class='kw'>let</span> (<span class='ident'>start</span>, <span class='ident'>end</span>) <span class='op'>=</span> (
             <span class='ident'>text_bytes</span>.<span class='ident'>as_ptr</span>(),
@@ -856,7 +955,43 @@
                 <span class='ident'>start</span>,
                 <span class='ident'>end</span>,
                 <span class='ident'>region</span>.<span class='ident'>raw</span>,
-                <span class='ident'>option</span>.<span class='ident'>bits</span>()
+                <span class='ident'>options</span>.<span class='ident'>bits</span>()
+            )
+        };
+
+        <span class='kw'>if</span> <span class='ident'>r</span> <span class='op'>&gt;=</span> <span class='number'>0</span> {
+            <span class='prelude-val'>Ok</span>(<span class='prelude-val'>Some</span>(<span class='ident'>r</span> <span class='kw'>as</span> <span class='ident'>usize</span>))
+        } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>r</span> <span class='op'>==</span> <span class='op'>-</span><span class='number'>1</span> {
+            <span class='prelude-val'>Ok</span>(<span class='prelude-val'>None</span>)
+        } <span class='kw'>else</span> {
+            <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>new</span>(<span class='ident'>r</span>, <span class='prelude-val'>None</span>))
+        }
+    }
+
+    <span class='doccomment'>/// Match string and store search result into region object.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Returns match length if pattern is found, otherwise return `None`.</span>
+    <span class='doccomment'>/// You also can use search time options: `OPTION_NOTBOL` and</span>
+    <span class='doccomment'>/// `OPTION_NOTEOL`.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>match_with_region</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>,
+                             <span class='ident'>text</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
+                             <span class='ident'>region</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Region</span>,
+                             <span class='ident'>options</span>: <span class='ident'>Options</span>)
+                             <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
+        <span class='kw'>let</span> <span class='ident'>text_bytes</span> <span class='op'>=</span> <span class='ident'>text</span>.<span class='ident'>as_bytes</span>();
+        <span class='kw'>let</span> (<span class='ident'>start</span>, <span class='ident'>end</span>) <span class='op'>=</span> (
+            <span class='ident'>text_bytes</span>.<span class='ident'>as_ptr</span>(),
+            <span class='ident'>text_bytes</span>[<span class='ident'>text_bytes</span>.<span class='ident'>len</span>()..].<span class='ident'>as_ptr</span>()
+        );
+
+        <span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='kw'>unsafe</span> {
+            <span class='ident'>ll</span>::<span class='ident'>onig_match</span>(
+                <span class='self'>self</span>.<span class='ident'>raw</span>,
+                <span class='ident'>start</span>,
+                <span class='ident'>end</span>,
+                <span class='ident'>start</span>,
+                <span class='ident'>region</span>.<span class='ident'>raw</span>,
+                <span class='ident'>options</span>.<span class='ident'>bits</span>()
             )
         };
 
@@ -875,13 +1010,46 @@
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// # Panics</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// This method may panic in the case memory overflow during execution or</span>
+    <span class='doccomment'>/// This method may panic in the case of memory overflow during execution or</span>
     <span class='doccomment'>/// other internal errors of Oniguruma engine.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>captures</span><span class='op'>&lt;</span><span class='lifetime'>&#39;t</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>text</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;t</span> <span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Captures</span><span class='op'>&lt;</span><span class='lifetime'>&#39;t</span><span class='op'>&gt;&gt;</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>region</span> <span class='op'>=</span> <span class='ident'>Region</span>::<span class='ident'>new</span>();
-        <span class='self'>self</span>.<span class='ident'>search</span>(<span class='ident'>text</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>region</span>, <span class='ident'>OPTION_NONE</span>)
+        <span class='self'>self</span>.<span class='ident'>search_with_region</span>(<span class='ident'>text</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>region</span>, <span class='ident'>OPTION_NONE</span>)
             .<span class='ident'>unwrap</span>()
             .<span class='ident'>map</span>(<span class='op'>|</span>_<span class='op'>|</span> <span class='ident'>Captures</span> { <span class='ident'>text</span>: <span class='ident'>text</span>, <span class='ident'>region</span>: <span class='ident'>region</span> })
+    }
+
+    <span class='doccomment'>/// Returns true if and only if the regex matches the string given.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// # Panics</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This method may panic in the case of memory overflow during execution or</span>
+    <span class='doccomment'>/// other internal errors of Oniguruma engine.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>is_match</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>text</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>region</span> <span class='op'>=</span> <span class='ident'>Region</span>::<span class='ident'>new</span>();
+        <span class='self'>self</span>.<span class='ident'>match_with_region</span>(<span class='ident'>text</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>region</span>, <span class='ident'>OPTION_NONE</span>)
+            .<span class='ident'>unwrap</span>()
+            .<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>r</span><span class='op'>|</span> <span class='ident'>r</span> <span class='op'>==</span> <span class='ident'>text</span>.<span class='ident'>len</span>())
+            .<span class='ident'>unwrap_or</span>(<span class='boolval'>false</span>)
+    }
+
+    <span class='doccomment'>/// Returns the start and end byte range of the leftmost-first match in</span>
+    <span class='doccomment'>/// `text`. If no match exists, then `None` is returned.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Note that this should only be used if you want to discover the position</span>
+    <span class='doccomment'>/// of the match. Testing the existence of a match is faster if you use</span>
+    <span class='doccomment'>/// `is_match`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// # Panics</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This method may panic in the case of memory overflow during execution or</span>
+    <span class='doccomment'>/// other internal errors of Oniguruma engine.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>find</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>text</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span>(<span class='ident'>usize</span>, <span class='ident'>usize</span>)<span class='op'>&gt;</span> {
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>region</span> <span class='op'>=</span> <span class='ident'>Region</span>::<span class='ident'>new</span>();
+        <span class='self'>self</span>.<span class='ident'>search_with_region</span>(<span class='ident'>text</span>, <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>region</span>, <span class='ident'>OPTION_NONE</span>)
+            .<span class='ident'>unwrap</span>()
+            .<span class='ident'>map</span>(<span class='op'>|</span>_<span class='op'>|</span> <span class='ident'>region</span>.<span class='ident'>pos</span>(<span class='number'>0</span>))
+            .<span class='ident'>unwrap_or</span>(<span class='prelude-val'>None</span>)
     }
 }
 

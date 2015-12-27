@@ -122,7 +122,10 @@ fn test_regex_search_with_region_tree() {
     let mut region = Region::new();
     let mut syntax = SYNTAX_RUBY.clone();
     syntax.enable_operators(SYNTAX_OPERATOR_ATMARK_CAPTURE_HISTORY);
-    let regex = Regex::new_with_syntax("(?@a+(?@b+))|(?@c+(?@d+))", &syntax).unwrap();
+    let regex = Regex::new_with_config("(?@a+(?@b+))|(?@c+(?@d+))", RegexConfig {
+        syntax: &syntax,
+        options: OPTION_NONE
+    }).unwrap();
     let r = regex.search_with_region("- cd aaabbb -", &mut region, OPTION_NONE).unwrap();
     assert_eq!(r, Some(2));
     assert_eq!(region.len(), 5);

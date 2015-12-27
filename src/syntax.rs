@@ -1,5 +1,5 @@
 use libc::{c_uint, c_ulong};
-use flags::{SyntaxOperator, SyntaxBehavior, Options};
+use super::{SyntaxOperator, SyntaxBehavior, Options};
 
 #[link(name="onig")]
 extern {
@@ -54,12 +54,12 @@ type OnigCodePoint = c_ulong;
 #[repr(C)]
 #[derive(Debug)]
 struct OnigMetaCharTable {
-    pub esc: OnigCodePoint,
-    pub anychar: OnigCodePoint,
-    pub anytime: OnigCodePoint,
-    pub zero_or_one_time: OnigCodePoint,
-    pub one_or_more_time: OnigCodePoint,
-    pub anychar_anytime: OnigCodePoint
+    esc: OnigCodePoint,
+    anychar: OnigCodePoint,
+    anytime: OnigCodePoint,
+    zero_or_one_time: OnigCodePoint,
+    one_or_more_time: OnigCodePoint,
+    anychar_anytime: OnigCodePoint
 }
 
 #[repr(C)]

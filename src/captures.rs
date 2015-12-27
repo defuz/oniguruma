@@ -1,4 +1,4 @@
-use std::{iter};
+use std::iter;
 use super::{Regex, Region, OPTION_NONE};
 
 impl Regex {

@@ -3,7 +3,7 @@ use std::{error, fmt, str, ptr};
 
 use super::{Region, Encoding, Options, Syntax, ENCODING_UTF8, SYNTAX_RUBY, OPTION_NONE};
 
-pub type OnigRegex = *const c_void;
+type OnigRegex = *const c_void;
 
 #[link(name="onig")]
 extern {

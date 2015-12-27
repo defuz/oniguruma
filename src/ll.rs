@@ -1,11 +1,13 @@
 use libc;
 
+use super::Syntax;
+
 pub type OnigRegex = *const u8;
-pub type OnigSyntax = libc::c_void;
 pub type OnigEncoding = libc::c_void;
-pub type OnigOptions = libc::c_int;
+pub type OnigOptions = libc::c_uint;
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct OnigErrorInfo {
     pub enc: *const OnigEncoding,
     pub par: *const u8,
@@ -13,6 +15,7 @@ pub struct OnigErrorInfo {
 }
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct OnigRegion {
     allocated: libc::c_int,
     pub num_regs: libc::c_int,
@@ -22,6 +25,7 @@ pub struct OnigRegion {
 }
 
 #[repr(C)]
+#[derive(Debug)]
 pub struct OnigCaptureTreeNode {
     pub group: libc::c_int,
     pub beg: libc::c_int,
@@ -33,17 +37,6 @@ pub struct OnigCaptureTreeNode {
 
 #[link(name="onig")]
 extern {
-    pub static OnigSyntaxASIS: OnigSyntax;
-    pub static OnigSyntaxPosixBasic: OnigSyntax;
-    pub static OnigSyntaxPosixExtended: OnigSyntax;
-    pub static OnigSyntaxEmacs: OnigSyntax;
-    pub static OnigSyntaxGrep: OnigSyntax;
-    pub static OnigSyntaxGnuRegex: OnigSyntax;
-    pub static OnigSyntaxJava: OnigSyntax;
-    pub static OnigSyntaxPerl: OnigSyntax;
-    pub static OnigSyntaxPerl_NG: OnigSyntax;
-    pub static OnigSyntaxRuby: OnigSyntax;
-
     pub static OnigEncodingUTF8: OnigEncoding;
 
     pub fn onig_error_code_to_str(err_buff: *mut u8, err_code: libc::c_int, ...) -> libc::c_int;
@@ -54,7 +47,7 @@ extern {
         pattern_end: *const u8,
         option: OnigOptions,
         enc: *const OnigEncoding,
-        syntax: *const OnigSyntax,
+        syntax: *const Syntax,
         err_info: *mut OnigErrorInfo
     ) -> libc::c_int;
 

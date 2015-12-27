@@ -120,11 +120,24 @@ fn test_regex_find() {
 #[test]
 fn test_regex_search_with_region_tree() {
     let mut region = Region::new();
-    let regex = Regex::new("(?<f.a.b>a+(b+))|(?<s.a.b>c+(d+))").unwrap();
+    let mut syntax = SYNTAX_RUBY.clone();
+    syntax.enable_operators(SYNTAX_OPERATOR_ATMARK_CAPTURE_HISTORY);
+    let regex = Regex::new_with_syntax("(?@a+(?@b+))|(?@c+(?@d+))", &syntax).unwrap();
     let r = regex.search_with_region("- cd aaabbb -", &mut region, OPTION_NONE).unwrap();
     assert_eq!(r, Some(2));
-    assert_eq!(region.len(), 3);
+    assert_eq!(region.len(), 5);
+
     let tree = region.tree().unwrap();
-    // assert_eq!(tree.pos(), (0, 5));
-    // assert_eq!(tree.len(), 2);
+
+    assert_eq!(tree.len(), 1);
+    assert_eq!(tree.group(), 0);
+    assert_eq!(tree.pos(), (2, 4));
+
+    assert_eq!(tree[0].len(), 1);
+    assert_eq!(tree[0].group(), 3);
+    assert_eq!(tree[0].pos(), (2, 4));
+
+    assert_eq!(tree[0][0].len(), 0);
+    assert_eq!(tree[0][0].group(), 4);
+    assert_eq!(tree[0][0].pos(), (3, 4));
 }

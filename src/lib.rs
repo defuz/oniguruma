@@ -22,47 +22,20 @@ extern crate libc;
 extern crate bitflags;
 
 mod ll;
+mod syntax;
 
 #[cfg(test)]
 mod test;
 
-use std::{error, fmt, str, ptr, iter, marker};
+use std::{error, fmt, str, ptr, iter, ops, mem};
 
-/// Plain text syntax
-pub static SYNTAX_ASIS: *const ll::OnigSyntax
-    = &ll::OnigSyntaxASIS;
-/// POSIX Basic RE syntax
-pub static SYNTAX_POSIX_BASIC: *const ll::OnigSyntax
-    = &ll::OnigSyntaxPosixBasic;
-/// POSIX Extended RE syntax
-pub static SYNTAX_POSIX_EXTENDED: *const ll::OnigSyntax
-    = &ll::OnigSyntaxPosixExtended;
-/// Emacs syntax
-pub static SYNTAX_EMACS: *const ll::OnigSyntax
-    = &ll::OnigSyntaxEmacs;
-/// Grep syntax
-pub static SYNTAX_GREP: *const ll::OnigSyntax
-    = &ll::OnigSyntaxGrep;
-/// GNU regex syntax
-pub static SYNTAX_GNU_REGEX: *const ll::OnigSyntax
-    = &ll::OnigSyntaxGnuRegex;
-/// Java (Sun java.util.regex) syntax
-pub static SYNTAX_JAVA: *const ll::OnigSyntax
-    = &ll::OnigSyntaxJava;
-/// Perl syntax
-pub static SYNTAX_PERL: *const ll::OnigSyntax
-    = &ll::OnigSyntaxPerl;
-/// Perl + named group syntax
-pub static SYNTAX_PERL_NG: *const ll::OnigSyntax
-    = &ll::OnigSyntaxPerl_NG;
-/// Ruby (default) syntax
-pub static SYNTAX_RUBY: *const ll::OnigSyntax
-    = &ll::OnigSyntaxRuby;
+// re-export
+pub use syntax::*;
 
 pub static ENCODING_UTF8: *const ll::OnigEncoding
     = &ll::OnigEncodingUTF8;
 
-bitflags!{
+bitflags! {
     /// Regex parsing, compilation and evaluation options.
     flags Options: ll::OnigOptions {
         /// Default options. This is both compile and search time option.
@@ -196,17 +169,15 @@ impl Region {
         }
     }
 
-    pub fn tree<'r>(&'r self) -> Option<CaptureTreeNode<'r>> {
+    pub fn tree<'r>(&'r self) -> Option<&CaptureTreeNode> {
         let raw = unsafe {
-            (*self.raw).history_root
-            // ll::onig_get_capture_tree(self.raw)
+            ll::onig_get_capture_tree(self.raw)
         };
         if raw.is_null() {
             None
         } else {
-            Some(CaptureTreeNode {
-                raw: raw,
-                region: marker::PhantomData
+            Some(unsafe {
+                mem::transmute(raw)
             })
         }
     }
@@ -227,54 +198,55 @@ impl Drop for Region {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
-pub struct CaptureTreeNode<'r> {
-    raw: *const ll::OnigCaptureTreeNode,
-    region: marker::PhantomData<&'r Region>
+#[derive(Debug)]
+pub struct CaptureTreeNode {
+    raw: ll::OnigCaptureTreeNode
 }
 
-impl<'r> CaptureTreeNode<'r> {
+impl CaptureTreeNode {
     pub fn group(&self) -> usize {
-        unsafe {
-            (*self.raw).group as usize
-        }
+        self.raw.group as usize
     }
 
     pub fn pos(&self) -> (usize, usize) {
-        unsafe {
-            ((*self.raw).beg as usize, (*self.raw).end as usize)
-        }
+        (self.raw.beg as usize, self.raw.end as usize)
     }
 
     pub fn len(&self) -> usize {
-        unsafe {
-            (*self.raw).num_childs as usize
-        }
+        self.raw.num_childs as usize
     }
 
-    pub fn childs(self) -> CaptureTreeNodeIter<'r> {
+    pub fn childs<'t>(&'t self) -> CaptureTreeNodeIter<'t> {
         CaptureTreeNodeIter { idx: 0, node: self }
     }
 }
 
-#[derive(Debug)]
-pub struct CaptureTreeNodeIter<'r> {
-    idx: usize,
-    node: CaptureTreeNode<'r>
+impl ops::Index<usize> for CaptureTreeNode {
+    type Output = CaptureTreeNode;
+
+    fn index(&self, index: usize) -> &CaptureTreeNode {
+        if index >= self.len() {
+            panic!("capture tree node index overflow")
+        }
+        unsafe {
+            mem::transmute(*self.raw.childs.offset(index as isize))
+        }
+    }
 }
 
-impl<'r> iter::Iterator for CaptureTreeNodeIter<'r> {
-    type Item = CaptureTreeNode<'r>;
+#[derive(Debug)]
+pub struct CaptureTreeNodeIter<'t> {
+    idx: usize,
+    node: &'t CaptureTreeNode
+}
 
-    fn next(&mut self) -> Option<CaptureTreeNode<'r>> {
+impl<'t> iter::Iterator for CaptureTreeNodeIter<'t> {
+    type Item = &'t CaptureTreeNode;
+
+    fn next(&mut self) -> Option<&'t CaptureTreeNode> {
         if self.idx < self.node.len() {
             self.idx += 1;
-            Some(CaptureTreeNode {
-                raw: unsafe {
-                    *(*self.node.raw).childs.offset((self.idx - 1) as isize)
-                },
-                region: self.node.region
-            })
+            Some(&self.node[self.idx - 1])
         } else {
             None
         }
@@ -401,14 +373,14 @@ impl Regex {
     }
 
     pub fn new_with_syntax(pattern: &str, syntax:
-                           *const ll::OnigSyntax)
+                           &Syntax)
                            -> Result<Regex, Error> {
         Regex::new_with_options_and_syntax(pattern, OPTION_NONE, syntax)
     }
 
     pub fn new_with_options_and_syntax(pattern: &str,
                                       options: Options,
-                                      syntax: *const ll::OnigSyntax)
+                                      syntax: &Syntax)
                                       -> Result<Regex, Error> {
 
         // Convert the rust types to those required for the call to

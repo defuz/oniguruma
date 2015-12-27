@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Syntax` struct in crate `oniguruma`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Syntax">
+
+    <title>oniguruma::Syntax - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>oniguruma</a></p><script>window.sidebarCurrent = {name: 'Syntax', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>oniguruma</a>::<wbr><a class='struct' href=''>Syntax</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1302' class='srclink' href='../src/oniguruma/syntax.rs.html#67-73' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Syntax {
+    // some fields omitted
+}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../oniguruma/struct.Syntax.html' title='oniguruma::Syntax'>Syntax</a></code></h3><div class='impl-items'><h4 id='method.get_operators' class='method'><code>fn <a href='#method.get_operators' class='fnname'>get_operators</a>(&amp;self) -&gt; <a class='struct' href='../oniguruma/struct.SyntaxOperator.html' title='oniguruma::SyntaxOperator'>SyntaxOperator</a></code></h4>
+<h4 id='method.set_operators' class='method'><code>fn <a href='#method.set_operators' class='fnname'>set_operators</a>(&amp;mut self, operators: <a class='struct' href='../oniguruma/struct.SyntaxOperator.html' title='oniguruma::SyntaxOperator'>SyntaxOperator</a>)</code></h4>
+<h4 id='method.enable_operators' class='method'><code>fn <a href='#method.enable_operators' class='fnname'>enable_operators</a>(&amp;mut self, operators: <a class='struct' href='../oniguruma/struct.SyntaxOperator.html' title='oniguruma::SyntaxOperator'>SyntaxOperator</a>)</code></h4>
+<h4 id='method.disable_operators' class='method'><code>fn <a href='#method.disable_operators' class='fnname'>disable_operators</a>(&amp;mut self, operators: <a class='struct' href='../oniguruma/struct.SyntaxOperator.html' title='oniguruma::SyntaxOperator'>SyntaxOperator</a>)</code></h4>
+<h4 id='method.get_behaviors' class='method'><code>fn <a href='#method.get_behaviors' class='fnname'>get_behaviors</a>(&amp;self) -&gt; <a class='struct' href='../oniguruma/struct.SyntaxBehavior.html' title='oniguruma::SyntaxBehavior'>SyntaxBehavior</a></code></h4>
+<h4 id='method.set_behaviors' class='method'><code>fn <a href='#method.set_behaviors' class='fnname'>set_behaviors</a>(&amp;mut self, behaviors: <a class='struct' href='../oniguruma/struct.SyntaxBehavior.html' title='oniguruma::SyntaxBehavior'>SyntaxBehavior</a>)</code></h4>
+<h4 id='method.enable_behaviors' class='method'><code>fn <a href='#method.enable_behaviors' class='fnname'>enable_behaviors</a>(&amp;mut self, behaviors: <a class='struct' href='../oniguruma/struct.SyntaxBehavior.html' title='oniguruma::SyntaxBehavior'>SyntaxBehavior</a>)</code></h4>
+<h4 id='method.disable_behaviors' class='method'><code>fn <a href='#method.disable_behaviors' class='fnname'>disable_behaviors</a>(&amp;mut self, behaviors: <a class='struct' href='../oniguruma/struct.SyntaxBehavior.html' title='oniguruma::SyntaxBehavior'>SyntaxBehavior</a>)</code></h4>
+<h4 id='method.get_options' class='method'><code>fn <a href='#method.get_options' class='fnname'>get_options</a>(&amp;self) -&gt; <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a></code></h4>
+<h4 id='method.set_options' class='method'><code>fn <a href='#method.set_options' class='fnname'>set_options</a>(&amp;mut self, options: <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a>)</code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../oniguruma/struct.Syntax.html' title='oniguruma::Syntax'>Syntax</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../oniguruma/struct.Syntax.html' title='oniguruma::Syntax'>Syntax</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;<a class='struct' href='../oniguruma/struct.Syntax.html' title='oniguruma::Syntax'>Syntax</a>)</code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../oniguruma/struct.Syntax.html' title='oniguruma::Syntax'>Syntax</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "oniguruma";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

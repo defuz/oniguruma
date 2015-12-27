@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CaptureTreeNode",""],["CaptureTreeNodeIter",""],["Region","Representation of regex search result."]]});

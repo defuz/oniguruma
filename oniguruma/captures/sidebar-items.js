@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Captures","Captures represents a group of captured strings for a single match."],["SubCaptures","An iterator over capture groups for a particular match of a regular  expression."],["SubCapturesPos","An iterator over capture group positions for a particular match of a regular expression."]]});

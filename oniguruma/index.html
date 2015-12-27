@@ -46,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/oniguruma/lib.rs.html#1-509' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/oniguruma/lib.rs.html#1-40' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Rust bindings for the <a href="https://github.com/kkos/oniguruma">Oniguruma</a>
 regular expressions library.</p>
 
@@ -65,6 +65,22 @@ regular expressions library.</p>
 }</pre>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.CaptureTreeNode.html'
+                               title='oniguruma::CaptureTreeNode'>CaptureTreeNode</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.CaptureTreeNodeIter.html'
+                               title='oniguruma::CaptureTreeNodeIter'>CaptureTreeNodeIter</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Captures.html'
                                title='oniguruma::Captures'>Captures</a></td>
@@ -103,6 +119,14 @@ a regular expression.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RegexConfig.html'
+                               title='oniguruma::RegexConfig'>RegexConfig</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='struct' href='struct.Region.html'
                                title='oniguruma::Region'>Region</a></td>
                         <td class='docblock short'>
@@ -128,6 +152,30 @@ a regular expression.</p>
                              <p>An iterator over capture group positions for a particular match of
 a regular expression.</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Syntax.html'
+                               title='oniguruma::Syntax'>Syntax</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SyntaxBehavior.html'
+                               title='oniguruma::SyntaxBehavior'>SyntaxBehavior</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SyntaxOperator.html'
+                               title='oniguruma::SyntaxOperator'>SyntaxOperator</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
@@ -242,6 +290,564 @@ This is compile time option.</p>
 
                         </td>
                     </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_ALLOW_DOUBLE_RANGE_OP_IN_CC.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_ALLOW_DOUBLE_RANGE_OP_IN_CC'>SYNTAX_BEHAVIOR_ALLOW_DOUBLE_RANGE_OP_IN_CC</a></td>
+                        <td class='docblock short'>
+                             <p><code>[0-9-a]=[0-9\-a]</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_ALLOW_INTERVAL_LOW_ABBREV.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_ALLOW_INTERVAL_LOW_ABBREV'>SYNTAX_BEHAVIOR_ALLOW_INTERVAL_LOW_ABBREV</a></td>
+                        <td class='docblock short'>
+                             <p><code>{,n} =&gt; {0,n}</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_ALLOW_INVALID_INTERVAL.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_ALLOW_INVALID_INTERVAL'>SYNTAX_BEHAVIOR_ALLOW_INVALID_INTERVAL</a></td>
+                        <td class='docblock short'>
+                             <p><code>{???</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_ALLOW_MULTIPLEX_DEFINITION_NAME.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_ALLOW_MULTIPLEX_DEFINITION_NAME'>SYNTAX_BEHAVIOR_ALLOW_MULTIPLEX_DEFINITION_NAME</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?&lt;x&gt;)(?&lt;x&gt;)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_ALLOW_UNMATCHED_CLOSE_SUBEXP.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_ALLOW_UNMATCHED_CLOSE_SUBEXP'>SYNTAX_BEHAVIOR_ALLOW_UNMATCHED_CLOSE_SUBEXP</a></td>
+                        <td class='docblock short'>
+                             <p><code>...)...</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_BACKSLASH_ESCAPE_IN_CC.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_BACKSLASH_ESCAPE_IN_CC'>SYNTAX_BEHAVIOR_BACKSLASH_ESCAPE_IN_CC</a></td>
+                        <td class='docblock short'>
+                             <p><code>[..\w..] etc..</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_CAPTURE_ONLY_NAMED_GROUP.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_CAPTURE_ONLY_NAMED_GROUP'>SYNTAX_BEHAVIOR_CAPTURE_ONLY_NAMED_GROUP</a></td>
+                        <td class='docblock short'>
+                             <p>See Oniguruma documenation</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_CONTEXT_INDEP_REPEAT_OPS.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_CONTEXT_INDEP_REPEAT_OPS'>SYNTAX_BEHAVIOR_CONTEXT_INDEP_REPEAT_OPS</a></td>
+                        <td class='docblock short'>
+                             <p><code>?, *, +, {n,m}</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_CONTEXT_INVALID_REPEAT_OPS.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_CONTEXT_INVALID_REPEAT_OPS'>SYNTAX_BEHAVIOR_CONTEXT_INVALID_REPEAT_OPS</a></td>
+                        <td class='docblock short'>
+                             <p><code>error or ignore</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_DIFFERENT_LEN_ALT_LOOK_BEHIND.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_DIFFERENT_LEN_ALT_LOOK_BEHIND'>SYNTAX_BEHAVIOR_DIFFERENT_LEN_ALT_LOOK_BEHIND</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?&lt;=a|bc)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_FIXED_INTERVAL_IS_GREEDY_ONLY.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_FIXED_INTERVAL_IS_GREEDY_ONLY'>SYNTAX_BEHAVIOR_FIXED_INTERVAL_IS_GREEDY_ONLY</a></td>
+                        <td class='docblock short'>
+                             <p><code>a{n}?=(?:a{n})?</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_NOT_NEWLINE_IN_NEGATIVE_CC.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_NOT_NEWLINE_IN_NEGATIVE_CC'>SYNTAX_BEHAVIOR_NOT_NEWLINE_IN_NEGATIVE_CC</a></td>
+                        <td class='docblock short'>
+                             <p><code>[^...]</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_STRICT_CHECK_BACKREF.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_STRICT_CHECK_BACKREF'>SYNTAX_BEHAVIOR_STRICT_CHECK_BACKREF</a></td>
+                        <td class='docblock short'>
+                             <p><code>/(\1)/,/\1()/ ..</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_WARN_CC_OP_NOT_ESCAPED.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_WARN_CC_OP_NOT_ESCAPED'>SYNTAX_BEHAVIOR_WARN_CC_OP_NOT_ESCAPED</a></td>
+                        <td class='docblock short'>
+                             <p><code>[,-,]</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_BEHAVIOR_WARN_REDUNDANT_NESTED_REPEAT.html'
+                               title='oniguruma::SYNTAX_BEHAVIOR_WARN_REDUNDANT_NESTED_REPEAT'>SYNTAX_BEHAVIOR_WARN_REDUNDANT_NESTED_REPEAT</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?:a*)+</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ASTERISK_ZERO_INF.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ASTERISK_ZERO_INF'>SYNTAX_OPERATOR_ASTERISK_ZERO_INF</a></td>
+                        <td class='docblock short'>
+                             <p><code>*</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ATMARK_CAPTURE_HISTORY.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ATMARK_CAPTURE_HISTORY'>SYNTAX_OPERATOR_ATMARK_CAPTURE_HISTORY</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?@..),(?@&lt;x&gt;..)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_BRACE_INTERVAL.html'
+                               title='oniguruma::SYNTAX_OPERATOR_BRACE_INTERVAL'>SYNTAX_OPERATOR_BRACE_INTERVAL</a></td>
+                        <td class='docblock short'>
+                             <p><code>{lower,upper}</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_BRACKET_CC.html'
+                               title='oniguruma::SYNTAX_OPERATOR_BRACKET_CC'>SYNTAX_OPERATOR_BRACKET_CC</a></td>
+                        <td class='docblock short'>
+                             <p><code>[...]</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_CCLASS_SET_OP.html'
+                               title='oniguruma::SYNTAX_OPERATOR_CCLASS_SET_OP'>SYNTAX_OPERATOR_CCLASS_SET_OP</a></td>
+                        <td class='docblock short'>
+                             <p><code>[...&amp;&amp;..[..]..]</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_DECIMAL_BACKREF.html'
+                               title='oniguruma::SYNTAX_OPERATOR_DECIMAL_BACKREF'>SYNTAX_OPERATOR_DECIMAL_BACKREF</a></td>
+                        <td class='docblock short'>
+                             <p><code>\num</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_DOT_ANYCHAR.html'
+                               title='oniguruma::SYNTAX_OPERATOR_DOT_ANYCHAR'>SYNTAX_OPERATOR_DOT_ANYCHAR</a></td>
+                        <td class='docblock short'>
+                             <p><code>.</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_AZ_BUF_ANCHOR.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_AZ_BUF_ANCHOR'>SYNTAX_OPERATOR_ESC_AZ_BUF_ANCHOR</a></td>
+                        <td class='docblock short'>
+                             <p><code>\A, \Z, \z</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_BRACE_INTERVAL.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_BRACE_INTERVAL'>SYNTAX_OPERATOR_ESC_BRACE_INTERVAL</a></td>
+                        <td class='docblock short'>
+                             <p><code>\{lower,upper\}</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_B_WORD_BOUND.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_B_WORD_BOUND'>SYNTAX_OPERATOR_ESC_B_WORD_BOUND</a></td>
+                        <td class='docblock short'>
+                             <p><code>\b, \B</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_CAPITAL_C_BAR_CONTROL.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_CAPITAL_C_BAR_CONTROL'>SYNTAX_OPERATOR_ESC_CAPITAL_C_BAR_CONTROL</a></td>
+                        <td class='docblock short'>
+                             <p><code>\C-x</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_CAPITAL_G_BEGIN_ANCHOR.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_CAPITAL_G_BEGIN_ANCHOR'>SYNTAX_OPERATOR_ESC_CAPITAL_G_BEGIN_ANCHOR</a></td>
+                        <td class='docblock short'>
+                             <p><code>\G</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_CAPITAL_M_BAR_META.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_CAPITAL_M_BAR_META'>SYNTAX_OPERATOR_ESC_CAPITAL_M_BAR_META</a></td>
+                        <td class='docblock short'>
+                             <p><code>\M-x</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_CAPITAL_Q_QUOTE.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_CAPITAL_Q_QUOTE'>SYNTAX_OPERATOR_ESC_CAPITAL_Q_QUOTE</a></td>
+                        <td class='docblock short'>
+                             <p><code>\Q...\E</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_CONTROL_CHARS.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_CONTROL_CHARS'>SYNTAX_OPERATOR_ESC_CONTROL_CHARS</a></td>
+                        <td class='docblock short'>
+                             <p><code>\n,\r,\t,\a ...</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_C_CONTROL.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_C_CONTROL'>SYNTAX_OPERATOR_ESC_C_CONTROL</a></td>
+                        <td class='docblock short'>
+                             <p><code>\cx</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_D_DIGIT.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_D_DIGIT'>SYNTAX_OPERATOR_ESC_D_DIGIT</a></td>
+                        <td class='docblock short'>
+                             <p><code>\d, \D</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_GNU_BUF_ANCHOR.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_GNU_BUF_ANCHOR'>SYNTAX_OPERATOR_ESC_GNU_BUF_ANCHOR</a></td>
+                        <td class='docblock short'>
+                             <p><code>\</code>, \&#39;`</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_G_SUBEXP_CALL.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_G_SUBEXP_CALL'>SYNTAX_OPERATOR_ESC_G_SUBEXP_CALL</a></td>
+                        <td class='docblock short'>
+                             <p><code>\g&lt;name&gt;, \g&lt;n&gt;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_H_XDIGIT.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_H_XDIGIT'>SYNTAX_OPERATOR_ESC_H_XDIGIT</a></td>
+                        <td class='docblock short'>
+                             <p><code>\h, \H</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_K_NAMED_BACKREF.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_K_NAMED_BACKREF'>SYNTAX_OPERATOR_ESC_K_NAMED_BACKREF</a></td>
+                        <td class='docblock short'>
+                             <p><code>\k&lt;name&gt;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_LPAREN_SUBEXP.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_LPAREN_SUBEXP'>SYNTAX_OPERATOR_ESC_LPAREN_SUBEXP</a></td>
+                        <td class='docblock short'>
+                             <p><code>\(...\)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_LTGT_WORD_BEGIN_END.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_LTGT_WORD_BEGIN_END'>SYNTAX_OPERATOR_ESC_LTGT_WORD_BEGIN_END</a></td>
+                        <td class='docblock short'>
+                             <p><code>\&lt;. \&gt;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_OCTAL3.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_OCTAL3'>SYNTAX_OPERATOR_ESC_OCTAL3</a></td>
+                        <td class='docblock short'>
+                             <p><code>\OOO</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_P_BRACE_CHAR_PROPERTY.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_P_BRACE_CHAR_PROPERTY'>SYNTAX_OPERATOR_ESC_P_BRACE_CHAR_PROPERTY</a></td>
+                        <td class='docblock short'>
+                             <p><code>\p{...}, \P{...}</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_P_BRACE_CIRCUMFLEX_NOT.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_P_BRACE_CIRCUMFLEX_NOT'>SYNTAX_OPERATOR_ESC_P_BRACE_CIRCUMFLEX_NOT</a></td>
+                        <td class='docblock short'>
+                             <p><code>\p{^..}, \P{^..}</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_S_WHITE_SPACE.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_S_WHITE_SPACE'>SYNTAX_OPERATOR_ESC_S_WHITE_SPACE</a></td>
+                        <td class='docblock short'>
+                             <p><code>\s, \S</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_U_HEX4.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_U_HEX4'>SYNTAX_OPERATOR_ESC_U_HEX4</a></td>
+                        <td class='docblock short'>
+                             <p><code>\uHHHH</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_VBAR_ALT.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_VBAR_ALT'>SYNTAX_OPERATOR_ESC_VBAR_ALT</a></td>
+                        <td class='docblock short'>
+                             <p><code>\|</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_V_VTAB.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_V_VTAB'>SYNTAX_OPERATOR_ESC_V_VTAB</a></td>
+                        <td class='docblock short'>
+                             <p><code>\v as VTAB</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_W_WORD.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_W_WORD'>SYNTAX_OPERATOR_ESC_W_WORD</a></td>
+                        <td class='docblock short'>
+                             <p><code>\w, \W</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_X_BRACE_HEX8.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_X_BRACE_HEX8'>SYNTAX_OPERATOR_ESC_X_BRACE_HEX8</a></td>
+                        <td class='docblock short'>
+                             <p><code>\x{7HHHHHHH}</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_ESC_X_HEX2.html'
+                               title='oniguruma::SYNTAX_OPERATOR_ESC_X_HEX2'>SYNTAX_OPERATOR_ESC_X_HEX2</a></td>
+                        <td class='docblock short'>
+                             <p><code>\xHH</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_INEFFECTIVE_ESCAPE.html'
+                               title='oniguruma::SYNTAX_OPERATOR_INEFFECTIVE_ESCAPE'>SYNTAX_OPERATOR_INEFFECTIVE_ESCAPE</a></td>
+                        <td class='docblock short'>
+                             <p><code>\</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_LINE_ANCHOR.html'
+                               title='oniguruma::SYNTAX_OPERATOR_LINE_ANCHOR'>SYNTAX_OPERATOR_LINE_ANCHOR</a></td>
+                        <td class='docblock short'>
+                             <p><code>^, $</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_LPAREN_SUBEXP.html'
+                               title='oniguruma::SYNTAX_OPERATOR_LPAREN_SUBEXP'>SYNTAX_OPERATOR_LPAREN_SUBEXP</a></td>
+                        <td class='docblock short'>
+                             <p><code>(...)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_OPTION_PERL.html'
+                               title='oniguruma::SYNTAX_OPERATOR_OPTION_PERL'>SYNTAX_OPERATOR_OPTION_PERL</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?imsx),(?-imsx)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_OPTION_RUBY.html'
+                               title='oniguruma::SYNTAX_OPERATOR_OPTION_RUBY'>SYNTAX_OPERATOR_OPTION_RUBY</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?imx), (?-imx)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_PLUS_ONE_INF.html'
+                               title='oniguruma::SYNTAX_OPERATOR_PLUS_ONE_INF'>SYNTAX_OPERATOR_PLUS_ONE_INF</a></td>
+                        <td class='docblock short'>
+                             <p><code>+</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_PLUS_POSSESSIVE_INTERVAL.html'
+                               title='oniguruma::SYNTAX_OPERATOR_PLUS_POSSESSIVE_INTERVAL'>SYNTAX_OPERATOR_PLUS_POSSESSIVE_INTERVAL</a></td>
+                        <td class='docblock short'>
+                             <p><code>{n,m}+</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_PLUS_POSSESSIVE_REPEAT.html'
+                               title='oniguruma::SYNTAX_OPERATOR_PLUS_POSSESSIVE_REPEAT'>SYNTAX_OPERATOR_PLUS_POSSESSIVE_REPEAT</a></td>
+                        <td class='docblock short'>
+                             <p><code>?+,*+,++</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_POSIX_BRACKET.html'
+                               title='oniguruma::SYNTAX_OPERATOR_POSIX_BRACKET'>SYNTAX_OPERATOR_POSIX_BRACKET</a></td>
+                        <td class='docblock short'>
+                             <p><code>[:xxxx:]</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_QMARK_GROUP_EFFECT.html'
+                               title='oniguruma::SYNTAX_OPERATOR_QMARK_GROUP_EFFECT'>SYNTAX_OPERATOR_QMARK_GROUP_EFFECT</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?...)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_QMARK_LT_NAMED_GROUP.html'
+                               title='oniguruma::SYNTAX_OPERATOR_QMARK_LT_NAMED_GROUP'>SYNTAX_OPERATOR_QMARK_LT_NAMED_GROUP</a></td>
+                        <td class='docblock short'>
+                             <p><code>(?&lt;name&gt;...)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_QMARK_NON_GREEDY.html'
+                               title='oniguruma::SYNTAX_OPERATOR_QMARK_NON_GREEDY'>SYNTAX_OPERATOR_QMARK_NON_GREEDY</a></td>
+                        <td class='docblock short'>
+                             <p><code>??,*?,+?,{n,m}?</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_QMARK_ZERO_ONE.html'
+                               title='oniguruma::SYNTAX_OPERATOR_QMARK_ZERO_ONE'>SYNTAX_OPERATOR_QMARK_ZERO_ONE</a></td>
+                        <td class='docblock short'>
+                             <p><code>?</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYNTAX_OPERATOR_VBAR_ALT.html'
+                               title='oniguruma::SYNTAX_OPERATOR_VBAR_ALT'>SYNTAX_OPERATOR_VBAR_ALT</a></td>
+                        <td class='docblock short'>
+                             <p><code>|</code></p>
+
+                        </td>
+                    </tr>
                 </table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
 <table>
                     <tr class=' module-item'>
@@ -337,8 +943,17 @@ This is compile time option.</p>
                         <td><a class='static' href='static.SYNTAX_RUBY.html'
                                title='oniguruma::SYNTAX_RUBY'>SYNTAX_RUBY</a></td>
                         <td class='docblock short'>
-                             <p>Ruby (default) syntax</p>
+                             <p>Ruby syntax (default)</p>
 
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.Encoding.html'
+                               title='oniguruma::Encoding'>Encoding</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 </table></section>

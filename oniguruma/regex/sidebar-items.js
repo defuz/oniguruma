@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Error","An error that occurred during parsing, compiling or evaluating a regular expression."],["Regex","A compiled Oniguruma regular expression."],["RegexConfig",""]]});

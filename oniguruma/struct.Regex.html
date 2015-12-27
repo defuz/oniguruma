@@ -46,19 +46,25 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-407' class='srclink' href='../src/oniguruma/lib.rs.html#314-316' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1091' class='srclink' href='../src/oniguruma/regex.rs.html#126-128' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Regex {
     // some fields omitted
 }</pre><div class='docblock'><p>A compiled Oniguruma regular expression.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(pattern: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a>, <a class='struct' href='../oniguruma/struct.Error.html' title='oniguruma::Error'>Error</a>&gt;</code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a></code></h3><div class='impl-items'><h4 id='method.captures' class='method'><code>fn <a href='#method.captures' class='fnname'>captures</a>&lt;'t&gt;(&amp;self, text: &amp;'t <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../oniguruma/struct.Captures.html' title='oniguruma::Captures'>Captures</a>&lt;'t&gt;&gt;</code></h4>
+<div class='docblock'><p>Returns the capture groups corresponding to the leftmost-first match
+in text. Capture group <code>0</code> always corresponds to the entire match.
+If no match is found, then <code>None</code> is returned.</p>
+
+<h1 id='panics' class='section-header'><a href='#panics'>Panics</a></h1>
+<p>This method may panic in the case of memory overflow during execution or
+other internal errors of Oniguruma engine.</p>
+</div></div><h3 class='impl'><code>impl <a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(pattern: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a>, <a class='struct' href='../oniguruma/struct.Error.html' title='oniguruma::Error'>Error</a>&gt;</code></h4>
 <div class='docblock'><p>Compiles a regular expression with default options. Default syntax is
 <code>SYNTAX_RUBY</code>.</p>
 
 <p>Once compiled, it can be used repeatedly to search in a string. If an
 invalid expression is given, then an error is returned.</p>
-</div><h4 id='method.new_with_options' class='method'><code>fn <a href='#method.new_with_options' class='fnname'>new_with_options</a>(pattern: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, options: <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a>, <a class='struct' href='../oniguruma/struct.Error.html' title='oniguruma::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.new_with_syntax' class='method'><code>fn <a href='#method.new_with_syntax' class='fnname'>new_with_syntax</a>(pattern: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, syntax: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*const OnigSyntax</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a>, <a class='struct' href='../oniguruma/struct.Error.html' title='oniguruma::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.new_with_options_and_syntax' class='method'><code>fn <a href='#method.new_with_options_and_syntax' class='fnname'>new_with_options_and_syntax</a>(pattern: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, options: <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a>, syntax: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*const OnigSyntax</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a>, <a class='struct' href='../oniguruma/struct.Error.html' title='oniguruma::Error'>Error</a>&gt;</code></h4>
+</div><h4 id='method.new_with_config' class='method'><code>fn <a href='#method.new_with_config' class='fnname'>new_with_config</a>&lt;'a&gt;(pattern: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, config: <a class='struct' href='../oniguruma/struct.RegexConfig.html' title='oniguruma::RegexConfig'>RegexConfig</a>&lt;'a&gt;) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../oniguruma/struct.Regex.html' title='oniguruma::Regex'>Regex</a>, <a class='struct' href='../oniguruma/struct.Error.html' title='oniguruma::Error'>Error</a>&gt;</code></h4>
 <h4 id='method.search_with_region' class='method'><code>fn <a href='#method.search_with_region' class='fnname'>search_with_region</a>(&amp;self, text: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, region: &amp;mut <a class='struct' href='../oniguruma/struct.Region.html' title='oniguruma::Region'>Region</a>, options: <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;, <a class='struct' href='../oniguruma/struct.Error.html' title='oniguruma::Error'>Error</a>&gt;</code></h4>
 <div class='docblock'><p>Search pattern in string and store search result into region object.</p>
 
@@ -71,14 +77,6 @@ invalid expression is given, then an error is returned.</p>
 <p>Returns match length if pattern is found, otherwise return <code>None</code>.
 You also can use search time options: <code>OPTION_NOTBOL</code> and
 <code>OPTION_NOTEOL</code>.</p>
-</div><h4 id='method.captures' class='method'><code>fn <a href='#method.captures' class='fnname'>captures</a>&lt;'t&gt;(&amp;self, text: &amp;'t <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../oniguruma/struct.Captures.html' title='oniguruma::Captures'>Captures</a>&lt;'t&gt;&gt;</code></h4>
-<div class='docblock'><p>Returns the capture groups corresponding to the leftmost-first match
-in text. Capture group <code>0</code> always corresponds to the entire match.
-If no match is found, then <code>None</code> is returned.</p>
-
-<h1 id='panics' class='section-header'><a href='#panics'>Panics</a></h1>
-<p>This method may panic in the case of memory overflow during execution or
-other internal errors of Oniguruma engine.</p>
 </div><h4 id='method.is_match' class='method'><code>fn <a href='#method.is_match' class='fnname'>is_match</a>(&amp;self, text: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
 <div class='docblock'><p>Returns true if and only if the regex matches the string given.</p>
 

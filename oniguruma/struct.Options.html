@@ -46,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-81' class='srclink' href='../src/oniguruma/<bitflags macros>.html#6' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-9' class='srclink' href='../src/oniguruma/<bitflags macros>.html#6' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Options {
     // some fields omitted
 }</pre><div class='docblock'><p>Regex parsing, compilation and evaluation options.</p>
@@ -54,12 +54,12 @@
 <div class='docblock'><p>Returns an empty set of flags.</p>
 </div><h4 id='method.all' class='method'><code>fn <a href='#method.all' class='fnname'>all</a>() -&gt; <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a></code></h4>
 <div class='docblock'><p>Returns the set containing all flags.</p>
-</div><h4 id='method.bits' class='method'><code>fn <a href='#method.bits' class='fnname'>bits</a>(&amp;self) -&gt; OnigOptions</code></h4>
+</div><h4 id='method.bits' class='method'><code>fn <a href='#method.bits' class='fnname'>bits</a>(&amp;self) -&gt; <a class='type' href='https://doc.rust-lang.org/libc/x86_64-apple-darwin/libc/type.c_uint.html' title='libc::c_uint'>c_uint</a></code></h4>
 <div class='docblock'><p>Returns the raw value of the flags currently stored.</p>
-</div><h4 id='method.from_bits' class='method'><code>fn <a href='#method.from_bits' class='fnname'>from_bits</a>(bits: OnigOptions) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a>&gt;</code></h4>
+</div><h4 id='method.from_bits' class='method'><code>fn <a href='#method.from_bits' class='fnname'>from_bits</a>(bits: <a class='type' href='https://doc.rust-lang.org/libc/x86_64-apple-darwin/libc/type.c_uint.html' title='libc::c_uint'>c_uint</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a>&gt;</code></h4>
 <div class='docblock'><p>Convert from underlying bit representation, unless that
 representation contains bits that do not correspond to a flag.</p>
-</div><h4 id='method.from_bits_truncate' class='method'><code>fn <a href='#method.from_bits_truncate' class='fnname'>from_bits_truncate</a>(bits: OnigOptions) -&gt; <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a></code></h4>
+</div><h4 id='method.from_bits_truncate' class='method'><code>fn <a href='#method.from_bits_truncate' class='fnname'>from_bits_truncate</a>(bits: <a class='type' href='https://doc.rust-lang.org/libc/x86_64-apple-darwin/libc/type.c_uint.html' title='libc::c_uint'>c_uint</a>) -&gt; <a class='struct' href='../oniguruma/struct.Options.html' title='oniguruma::Options'>Options</a></code></h4>
 <div class='docblock'><p>Convert from underlying bit representation, dropping any bits
 that do not correspond to flags.</p>
 </div><h4 id='method.is_empty' class='method'><code>fn <a href='#method.is_empty' class='fnname'>is_empty</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>

@@ -18,7 +18,17 @@ pub struct OnigRegion {
     pub num_regs: libc::c_int,
     pub beg: *const libc::c_int,
     pub end: *const libc::c_int,
-    history_root: *const u8
+    pub history_root: *const OnigCaptureTreeNode
+}
+
+#[repr(C)]
+pub struct OnigCaptureTreeNode {
+    pub group: libc::c_int,
+    pub beg: libc::c_int,
+    pub end: libc::c_int,
+    allocated: libc::c_int,
+    pub num_childs: libc::c_int,
+    pub childs: *const *const OnigCaptureTreeNode
 }
 
 #[link(name="onig")]
@@ -72,4 +82,5 @@ extern {
     pub fn onig_region_new() -> *const OnigRegion;
     pub fn onig_region_free(region: *const OnigRegion, free_self: libc::c_int);
     pub fn onig_region_clear(region: *const OnigRegion);
+    pub fn onig_get_capture_tree(region: *const OnigRegion) -> *const OnigCaptureTreeNode;
 }

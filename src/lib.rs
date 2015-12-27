@@ -26,7 +26,7 @@ mod ll;
 #[cfg(test)]
 mod test;
 
-use std::{error, fmt, str, ptr, iter};
+use std::{error, fmt, str, ptr, iter, marker};
 
 /// Plain text syntax
 pub static SYNTAX_ASIS: *const ll::OnigSyntax
@@ -196,6 +196,21 @@ impl Region {
         }
     }
 
+    pub fn tree<'r>(&'r self) -> Option<CaptureTreeNode<'r>> {
+        let raw = unsafe {
+            (*self.raw).history_root
+            // ll::onig_get_capture_tree(self.raw)
+        };
+        if raw.is_null() {
+            None
+        } else {
+            Some(CaptureTreeNode {
+                raw: raw,
+                region: marker::PhantomData
+            })
+        }
+    }
+
     /// Clear contents of region.
     pub fn clear(&mut self) {
         unsafe {
@@ -208,6 +223,60 @@ impl Drop for Region {
     fn drop(&mut self) {
         unsafe {
             ll::onig_region_free(self.raw, 1);
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct CaptureTreeNode<'r> {
+    raw: *const ll::OnigCaptureTreeNode,
+    region: marker::PhantomData<&'r Region>
+}
+
+impl<'r> CaptureTreeNode<'r> {
+    pub fn group(&self) -> usize {
+        unsafe {
+            (*self.raw).group as usize
+        }
+    }
+
+    pub fn pos(&self) -> (usize, usize) {
+        unsafe {
+            ((*self.raw).beg as usize, (*self.raw).end as usize)
+        }
+    }
+
+    pub fn len(&self) -> usize {
+        unsafe {
+            (*self.raw).num_childs as usize
+        }
+    }
+
+    pub fn childs(self) -> CaptureTreeNodeIter<'r> {
+        CaptureTreeNodeIter { idx: 0, node: self }
+    }
+}
+
+#[derive(Debug)]
+pub struct CaptureTreeNodeIter<'r> {
+    idx: usize,
+    node: CaptureTreeNode<'r>
+}
+
+impl<'r> iter::Iterator for CaptureTreeNodeIter<'r> {
+    type Item = CaptureTreeNode<'r>;
+
+    fn next(&mut self) -> Option<CaptureTreeNode<'r>> {
+        if self.idx < self.node.len() {
+            self.idx += 1;
+            Some(CaptureTreeNode {
+                raw: unsafe {
+                    *(*self.node.raw).childs.offset((self.idx - 1) as isize)
+                },
+                region: self.node.region
+            })
+        } else {
+            None
         }
     }
 }

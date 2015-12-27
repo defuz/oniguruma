@@ -32,12 +32,12 @@ fn test_error_code() {
     }
 }
 
-
 #[test]
 fn test_regex_search_with_region() {
     let mut region = Region::new();
     let regex = Regex::new("e(l+)").unwrap();
     let r = regex.search_with_region("hello", &mut region, OPTION_NONE).unwrap();
+    assert!(region.tree().is_none());
     assert_eq!(r, Some(1));
     assert_eq!(region.len(), 2);
     let pos1 = region.pos(0).unwrap();
@@ -51,6 +51,7 @@ fn test_regex_match_with_region() {
     let mut region = Region::new();
     let regex = Regex::new("he(l+)").unwrap();
     let r = regex.match_with_region("hello", &mut region, OPTION_NONE).unwrap();
+    assert!(region.tree().is_none());
     assert_eq!(r, Some(4));
     assert_eq!(region.len(), 2);
     let pos1 = region.pos(0).unwrap();
@@ -116,3 +117,14 @@ fn test_regex_find() {
     assert_eq!(regex.find("hey, honey!"), None);
 }
 
+#[test]
+fn test_regex_search_with_region_tree() {
+    let mut region = Region::new();
+    let regex = Regex::new("(?<f.a.b>a+(b+))|(?<s.a.b>c+(d+))").unwrap();
+    let r = regex.search_with_region("- cd aaabbb -", &mut region, OPTION_NONE).unwrap();
+    assert_eq!(r, Some(2));
+    assert_eq!(region.len(), 3);
+    let tree = region.tree().unwrap();
+    // assert_eq!(tree.pos(), (0, 5));
+    // assert_eq!(tree.len(), 2);
+}

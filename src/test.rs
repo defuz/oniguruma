@@ -144,3 +144,11 @@ fn test_regex_search_with_region_tree() {
     assert_eq!(tree[0][0].group(), 4);
     assert_eq!(tree[0][0].pos(), (3, 4));
 }
+
+#[test]
+fn test_regex_lens() {
+    let regex = Regex::new("(he)(l+)(o)").unwrap();
+    assert_eq!(regex.captures_len(), 3);
+    assert_eq!(regex.names_len(), 0);
+    assert_eq!(regex.capture_histories_len(), 0);
+}

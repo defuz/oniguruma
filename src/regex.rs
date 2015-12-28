@@ -38,6 +38,10 @@ extern {
         option: c_uint
     ) -> c_int;
 
+    fn onig_number_of_names(reg: OnigRegex) -> c_int;
+    fn onig_number_of_captures(reg: OnigRegex) -> c_int;
+    fn onig_number_of_capture_histories(reg: OnigRegex) -> c_int;
+
     fn onig_free(reg: OnigRegex);
 }
 
@@ -278,6 +282,24 @@ impl Regex {
             .unwrap()
             .map(|_| region.pos(0))
             .unwrap_or(None)
+    }
+
+    pub fn captures_len(&self) -> usize {
+        unsafe {
+            onig_number_of_captures(self.raw) as usize
+        }
+    }
+
+    pub fn capture_histories_len(&self) -> usize {
+        unsafe {
+            onig_number_of_capture_histories(self.raw) as usize
+        }
+    }
+
+    pub fn names_len(&self) -> usize {
+        unsafe {
+            onig_number_of_names(self.raw) as usize
+        }
     }
 }
 
